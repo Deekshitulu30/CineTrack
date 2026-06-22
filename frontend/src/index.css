@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CineTrack Global Styles — Midnight Cinema Design System
+   ============================================================ */
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0b1326;
+    color: #dae2fd;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b1326;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(160, 120, 255, 0.4);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(160, 120, 255, 0.7);
+  }
+}
+
+@layer components {
+  /* Glassmorphism Panel */
+  .glass-panel {
+    background: rgba(45, 52, 73, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(149, 142, 160, 0.2);
+  }
+
+  .glass-input {
+    background: rgba(23, 31, 51, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(73, 68, 84, 0.5);
+    color: #dae2fd;
+    transition: all 0.2s ease;
+  }
+
+  .glass-input:focus {
+    outline: none;
+    border-color: #d0bcff;
+    box-shadow: 0 0 0 1px rgba(208, 188, 255, 0.3);
+  }
+
+  .glass-input::placeholder {
+    color: rgba(149, 142, 160, 0.6);
+  }
+
+  /* AI Glow Border */
+  .ai-glow-border {
+    animation: borderGlow 3s ease-in-out infinite alternate;
+    border: 1px solid #a078ff;
+  }
+
+  @keyframes borderGlow {
+    0% { box-shadow: 0 0 10px rgba(160, 120, 255, 0.2), inset 0 0 5px rgba(160, 120, 255, 0.1); }
+    100% { box-shadow: 0 0 30px rgba(160, 120, 255, 0.5), inset 0 0 15px rgba(160, 120, 255, 0.2); }
+  }
+
+  /* Skeleton shimmer animation */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(45, 52, 73, 0.4) 25%,
+      rgba(73, 68, 84, 0.6) 50%,
+      rgba(45, 52, 73, 0.4) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Floating glow orb */
+  .glow-orb {
+    animation: floatOrb 8s ease-in-out infinite;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-20px) scale(1.05); opacity: 0.5; }
+  }
+
+  /* Hide scrollbar utility */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-primary text-on-primary font-semibold px-6 py-3 rounded-full
+           hover:bg-primary-fixed transition-all duration-200 active:scale-95
+           shadow-lg shadow-primary/20;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply glass-panel text-on-surface font-semibold px-6 py-3 rounded-full
+           hover:bg-surface-variant/50 transition-all duration-200 active:scale-95;
+  }
+
+  /* Movie card hover effect */
+  .movie-card {
+    @apply relative rounded-xl overflow-hidden cursor-pointer
+           transition-transform duration-300 hover:scale-[1.03]
+           hover:shadow-xl hover:shadow-primary/10;
+  }
+
+  /* Poster blur background */
+  .poster-blur {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    filter: blur(40px);
+    opacity: 0.4;
+    animation: slowPan 60s ease-in-out infinite alternate;
+    background-size: cover;
+    background-position: center;
+  }
+
+  @keyframes slowPan {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-5%, -5%) scale(1.05); }
+    100% { transform: translate(5%, 5%) scale(1); }
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .border-top-glow {
+    position: relative;
+  }
+  .border-top-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(208, 188, 255, 0.5), transparent);
+  }
+}

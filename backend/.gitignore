@@ -1,0 +1,4 @@
+node_modules/
+.env
+cinetrack.db
+*.db
