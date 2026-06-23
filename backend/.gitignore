@@ -2,3 +2,5 @@ node_modules/
 .env
 cinetrack.db
 *.db
+*.db-shm
+*.db-wal
